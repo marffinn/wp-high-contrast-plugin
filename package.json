@@ -1,6 +1,6 @@
 {
   "name": "simple-high-contrast-resizer",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Prosty Kontrast i Zmiana Rozmiaru Czcionki WordPress Plugin",
   "main": "simple-high-contrast-resizer.php",
   "scripts": {
