@@ -353,7 +353,7 @@
     </header>
 
     <section class="hero">
-        <div class="badge">Wersja 1.2 — Teraz po Polsku</div>
+        <div class="badge">Wersja 1.3 — Przycisk Resetu</div>
         <h1>Lekki pasek dostępności dla Twojego WordPressa</h1>
         <p class="tagline">Zapewnij pełną czytelność swojej strony dzięki opcji zmiany rozmiaru tekstu i wysokiemu kontrastowi. Prosty montaż i pełna personalizacja.</p>
         <div class="cta-buttons">
@@ -368,6 +368,7 @@
         <button onclick="toggleHighContrast()">⚡ Kontrast</button>
         <button onclick="changeFontSize(0.1)">+A Większa</button>
         <button onclick="changeFontSize(-0.1)">-A Mniejsza</button>
+        <button onclick="resetFontSize()">A Domyślna</button>
     </div>
 
     <section class="features">
@@ -445,6 +446,12 @@
         function changeFontSize(delta) {
             fontScale = Math.max(0.6, Math.min(2.0, fontScale + delta));
             document.documentElement.style.fontSize = (fontScale * 100) + '%';
+            localStorage.setItem('fontScale', fontScale);
+        }
+
+        function resetFontSize() {
+            fontScale = 1.0;
+            document.documentElement.style.fontSize = '100%';
             localStorage.setItem('fontScale', fontScale);
         }
 
