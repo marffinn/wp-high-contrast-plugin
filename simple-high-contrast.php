@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Prosty Kontrast i Zmiana Rozmiaru Czcionki
  * Description:       Pływający pasek dostępności z wysokim kontrastem (żółty na ciemnym tle) i regulacją rozmiaru czcionki. Możliwość pełnej konfiguracji z poziomu kokpitu.
- * Version:           1.3.3
+ * Version:           1.3.4
  * Author:            Grok
  * License:           GPL v2 or later
  */
