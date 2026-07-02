@@ -1,442 +1,352 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prosty Kontrast & Zmiana Rozmiaru Czcionki — WordPress Plugin</title>
+    <title data-i18n="pageTitle">Prosty Kontrast i Zmiana Rozmiaru Czcionki — WordPress Plugin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --text-color: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent-color: #eab308;
-            --accent-glow: rgba(234, 179, 8, 0.15);
-            --border-color: #1f2937;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        .hero {
-            max-width: 1200px;
-            margin: 4rem auto 6rem auto;
-            padding: 0 1.5rem;
-            text-align: center;
-        }
-
-        .badge {
-            background-color: var(--accent-glow);
-            color: var(--accent-color);
-            padding: 0.35rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.2;
-            max-width: 800px;
-            margin: 0 auto 1.5rem auto;
-            letter-spacing: -0.025em;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            background-color: #facc15;
-            box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: var(--text-muted);
-        }
-
-        /* Sekcja Funkcji */
-        .features {
-            max-width: 1200px;
-            margin: 0 auto 6rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 12px;
-            position: relative;
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card h3 svg {
-            color: var(--accent-color);
-            flex-shrink: 0;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Instrukcja Instalacji */
-        .installation {
-            max-width: 800px;
-            margin: 0 auto 8rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .steps {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2.5rem;
-            border-radius: 16px;
-        }
-
-        .step {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .step:last-child {
-            margin-bottom: 0;
-        }
-
-        .step-num {
-            background-color: var(--accent-glow);
-            color: var(--accent-color);
-            font-weight: 700;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid rgba(234, 179, 8, 0.3);
-        }
-
-        .step h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .step p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Kompaktowy Pasek Dostępności (Demo na żywo) */
-        #simple-accessibility-toolbar {
-            position: fixed;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            background: #000000;
-            color: #ffff00;
-            padding: 8px;
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-            z-index: 99999;
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            border: 1.5px solid #ffff00;
-            min-width: 110px;
-            box-sizing: border-box;
-        }
-        #simple-accessibility-toolbar strong {
-            color: #ffff00;
-            font-size: 11px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            margin-bottom: 2px;
-        }
-        #simple-accessibility-toolbar button {
-            background: #222;
-            color: #ffff00;
-            border: 1px solid #ffff00;
-            padding: 6px 8px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 11px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            white-space: nowrap;
-            transition: background 0.2s ease;
-        }
-        #simple-accessibility-toolbar button:hover {
-            background: #333;
-        }
-
-        /* Styl wysokiego kontrastu aktywowany dla demo */
-        .simple-high-contrast-active,
-        .simple-high-contrast-active * {
-            background-color: #111111 !important;
-            color: #ffff00 !important;
-            border-color: #ffff00 !important;
-        }
-        .simple-high-contrast-active a, 
-        .simple-high-contrast-active .logo, 
-        .simple-high-contrast-active .logo span {
-            color: #ffff66 !important;
-        }
-        .simple-high-contrast-active .btn-primary {
-            background-color: #ffff00 !important;
-            color: #000000 !important;
-        }
-        .simple-high-contrast-active .step-num {
-            background-color: transparent !important;
-            border: 2px solid #ffff00 !important;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.25rem;
-            }
-            .hero {
-                margin-top: 2rem;
-            }
-            #simple-accessibility-toolbar {
-                top: auto;
-                bottom: 15px;
-                right: 15px;
-                transform: none;
-                flex-direction: row;
-                width: calc(100% - 30px);
-                justify-content: space-around;
-                align-items: center;
-            }
-            #simple-accessibility-toolbar strong {
-                margin-bottom: 0;
-            }
-            #simple-accessibility-toolbar button {
-                width: auto;
-            }
-            body {
-                padding-bottom: 80px; /* Miejsce na pasek mobilny */
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
     <header>
         <a href="#" class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Dostępność</span>Plugin
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                <circle cx="12" cy="12" r="3" />
+            </svg>
+            <span data-i18n="logoText">Dostępność</span>
         </a>
-        <a href="https://github.com/marffinn/wp-high-contrast-plugin" class="btn btn-secondary" target="_blank">GitHub</a>
+
+        <div class="header-actions">
+            <div class="lang-switcher" role="group" aria-label="Language switcher">
+                <button class="lang-btn active" type="button" data-lang="pl">PL</button>
+                <button class="lang-btn" type="button" data-lang="en">EN</button>
+                <button class="lang-btn" type="button" data-lang="de">DE</button>
+                <button class="lang-btn" type="button" data-lang="ru">RU</button>
+                <button class="lang-btn" type="button" data-lang="zh">中文</button>
+            </div>
+            <a href="https://github.com/marffinn/wp-high-contrast-plugin" class="btn btn-secondary" target="_blank"
+                data-i18n="githubButton">GitHub</a>
+        </div>
     </header>
 
     <section class="hero">
-        <div class="badge">Wersja 1.3.1 — Przycisk Resetu</div>
-        <h1>Lekki pasek dostępności dla Twojego WordPressa</h1>
-        <p class="tagline">Zapewnij pełną czytelność swojej strony dzięki opcji zmiany rozmiaru tekstu i wysokiemu kontrastowi. Prosty montaż i pełna personalizacja.</p>
+        <div class="badge" data-i18n="badge">Wersja 1.3.1 — Przycisk Resetu</div>
+        <h1 data-i18n="heroTitle">Lekki pasek dostępności dla Twojego WordPressa</h1>
+        <p class="tagline" data-i18n="heroTagline">Zapewnij pełną czytelność swojej strony dzięki opcji zmiany rozmiaru
+            tekstu i wysokiemu kontrastowi. Prosty montaż i pełna personalizacja.</p>
         <div class="cta-buttons">
-            <a href="#instalacja" class="btn btn-primary">Zobacz jak zainstalować</a>
-            <a href="https://github.com/marffinn/wp-high-contrast-plugin/releases/latest/download/simple-high-contrast.zip" class="btn btn-secondary">Pobierz .ZIP z GitHub</a>
+            <a href="#instalacja" class="btn btn-primary" data-i18n="ctaPrimary">Zobacz jak zainstalować</a>
+            <a href="https://github.com/marffinn/wp-high-contrast-plugin/releases/latest/download/simple-high-contrast.zip"
+                class="btn btn-secondary" data-i18n="ctaSecondary">Pobierz .ZIP z GitHub</a>
         </div>
     </section>
 
-    <!-- Pasek demonstracyjny (Działa w czasie rzeczywistym na tej stronie!) -->
     <div id="simple-accessibility-toolbar">
-        <strong>Dostępność</strong>
-        <button onclick="toggleHighContrast()">⚡ Kontrast</button>
-        <button onclick="changeFontSize(0.1)">+A Większa</button>
-        <button onclick="changeFontSize(-0.1)">-A Mniejsza</button>
-        <button onclick="resetFontSize()">A Domyślna</button>
+        <strong data-i18n="toolbarTitle">Dostępność</strong>
+        <button onclick="toggleHighContrast()" data-i18n="toolbarContrast">⚡ Kontrast</button>
+        <button onclick="changeFontSize(0.1)" data-i18n="toolbarFontUp">+A Większa</button>
+        <button onclick="changeFontSize(-0.1)" data-i18n="toolbarFontDown">-A Mniejsza</button>
+        <button onclick="resetFontSize()" data-i18n="toolbarReset">A Domyślna</button>
     </div>
 
     <section class="features">
         <div class="section-title">
-            <h2>Dlaczego ta wtyczka?</h2>
-            <p>Najważniejsze zalety minimalistycznego rozwiązania.</p>
+            <h2 data-i18n="featuresTitle">Dlaczego ta wtyczka?</h2>
+            <p data-i18n="featuresSubtitle">Najważniejsze zalety minimalistycznego rozwiązania.</p>
         </div>
         <div class="grid">
             <div class="card">
                 <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-5-5-5"/></svg>
-                    Kompaktowy Rozmiar
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="m10 15 5-5-5-5" />
+                    </svg>
+                    <span data-i18n="feature1Title">Kompaktowy Rozmiar</span>
                 </h3>
-                <p>Nowy, zredukowany design paska ułatwia integrację na stronie, nie zasłaniając istotnych treści.</p>
+                <p data-i18n="feature1Text">Nowy, zredukowany design paska ułatwia integrację na stronie, nie
+                    zasłaniając istotnych treści.</p>
             </div>
             <div class="card">
                 <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 8 6 6 6-6"/></svg>
-                    Personalizacja Tekstów
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="m5 8 6 6 6-6" />
+                    </svg>
+                    <span data-i18n="feature2Title">Personalizacja Tekstów</span>
                 </h3>
-                <p>Możesz w prosty sposób zmienić nagłówek oraz etykiety przycisków w panelu administracyjnym WordPressa.</p>
+                <p data-i18n="feature2Text">Możesz w prosty sposób zmienić nagłówek oraz etykiety przycisków w panelu
+                    administracyjnym WordPressa.</p>
             </div>
             <div class="card">
                 <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Pełne Tłumaczenie PL
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    <span data-i18n="feature3Title">Pełne Tłumaczenie PL</span>
                 </h3>
-                <p>Kokpit administratora oraz wszystkie opcje są w 100% przetłumaczone na język polski.</p>
+                <p data-i18n="feature3Text">Kokpit administratora oraz wszystkie opcje są w 100% przetłumaczone na język
+                    polski.</p>
             </div>
         </div>
     </section>
 
     <section class="installation" id="instalacja">
         <div class="section-title">
-            <h2>Szybka Instalacja</h2>
-            <p>Trzy proste kroki do uruchomienia paska dostępności na Twojej witrynie.</p>
+            <h2 data-i18n="installationTitle">Szybka Instalacja</h2>
+            <p data-i18n="installationSubtitle">Trzy proste kroki do uruchomienia paska dostępności na Twojej witrynie.
+            </p>
         </div>
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
                 <div>
-                    <h3>Pobierz kod wtyczki</h3>
-                    <p>Skopiuj kod PHP wtyczki lub pobierz całe repozytorium jako paczkę .ZIP.</p>
+                    <h3 data-i18n="step1Title">Pobierz kod wtyczki</h3>
+                    <p data-i18n="step1Text">Skopiuj kod PHP wtyczki lub pobierz całe repozytorium jako paczkę .ZIP.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
                 <div>
-                    <h3>Prześlij do WordPressa</h3>
-                    <p>Wgraj folder wtyczki do katalogu <code>/wp-content/plugins/</code> lub załaduj plik .ZIP w panelu WordPress w sekcji Wtyczki -> Dodaj nową.</p>
+                    <h3 data-i18n="step2Title">Prześlij do WordPressa</h3>
+                    <p>
+                        <span data-i18n="step2Text">Wgraj folder wtyczki do katalogu</span>
+                        <code>/wp-content/plugins/</code>
+                        <span data-i18n="step2TextSuffix">lub załaduj plik .ZIP w panelu WordPress w sekcji Wtyczki →
+                            Dodaj nową.</span>
+                    </p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div>
-                    <h3>Włącz i dostosuj</h3>
-                    <p>Aktywuj wtyczkę w panelu i przejdź do zakładki <strong>Ustawienia -> Dostępność (Kontrast)</strong>, aby dostosować teksty i kolory.</p>
+                    <h3 data-i18n="step3Title">Włącz i dostosuj</h3>
+                    <p>
+                        <span data-i18n="step3Text">Aktywuj wtyczkę w panelu i przejdź do zakładki</span>
+                        <strong data-i18n="step3Highlight">Ustawienia → Dostępność (Kontrast)</strong>
+                        <span data-i18n="step3TextSuffix">aby dostosować teksty i kolory.</span>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Prosty Kontrast i Zmiana Rozmiaru Czcionki • Udostępniane na licencji GPL v2 lub nowszej.</p>
+        <p data-i18n="footerText">Prosty Kontrast i Zmiana Rozmiaru Czcionki • Udostępniane na licencji GPL v2 lub
+            nowszej.</p>
     </footer>
 
     <script>
         let fontScale = 1.0;
+        const translations = {
+            pl: {
+                pageTitle: 'Prosty Kontrast i Zmiana Rozmiaru Czcionki — WordPress Plugin',
+                logoText: 'Dostępność',
+                githubButton: 'GitHub',
+                badge: 'Wersja 1.3.1 — Przycisk Resetu',
+                heroTitle: 'Lekki pasek dostępności dla Twojego WordPressa',
+                heroTagline: 'Zapewnij pełną czytelność swojej strony dzięki opcji zmiany rozmiaru tekstu i wysokiemu kontrastowi. Prosty montaż i pełna personalizacja.',
+                ctaPrimary: 'Zobacz jak zainstalować',
+                ctaSecondary: 'Pobierz .ZIP z GitHub',
+                toolbarTitle: 'Dostępność',
+                toolbarContrast: '⚡ Kontrast',
+                toolbarFontUp: '+A Większa',
+                toolbarFontDown: '-A Mniejsza',
+                toolbarReset: 'A Domyślna',
+                featuresTitle: 'Dlaczego ta wtyczka?',
+                featuresSubtitle: 'Najważniejsze zalety minimalistycznego rozwiązania.',
+                feature1Title: 'Kompaktowy Rozmiar',
+                feature1Text: 'Nowy, zredukowany design paska ułatwia integrację na stronie, nie zasłaniając istotnych treści.',
+                feature2Title: 'Personalizacja Tekstów',
+                feature2Text: 'Możesz w prosty sposób zmienić nagłówek oraz etykiety przycisków w panelu administracyjnym WordPressa.',
+                feature3Title: 'Pełne Tłumaczenie PL',
+                feature3Text: 'Kokpit administratora oraz wszystkie opcje są w 100% przetłumaczone na język polski.',
+                installationTitle: 'Szybka Instalacja',
+                installationSubtitle: 'Trzy proste kroki do uruchomienia paska dostępności na Twojej witrynie.',
+                step1Title: 'Pobierz kod wtyczki',
+                step1Text: 'Skopiuj kod PHP wtyczki lub pobierz całe repozytorium jako paczkę .ZIP.',
+                step2Title: 'Prześlij do WordPressa',
+                step2Text: 'Wgraj folder wtyczki do katalogu',
+                step2TextSuffix: 'lub załaduj plik .ZIP w panelu WordPress w sekcji Wtyczki → Dodaj nową.',
+                step3Title: 'Włącz i dostosuj',
+                step3Text: 'Aktywuj wtyczkę w panelu i przejdź do zakładki',
+                step3Highlight: 'Ustawienia → Dostępność (Kontrast)',
+                step3TextSuffix: 'aby dostosować teksty i kolory.',
+                footerText: 'Prosty Kontrast i Zmiana Rozmiaru Czcionki • Udostępniane na licencji GPL v2 lub nowszej.'
+            },
+            en: {
+                pageTitle: 'Simple High Contrast & Font Size Control — WordPress Plugin',
+                logoText: 'Accessibility',
+                githubButton: 'GitHub',
+                badge: 'Version 1.3.1 — Reset Button',
+                heroTitle: 'A lightweight accessibility toolbar for your WordPress site',
+                heroTagline: 'Ensure excellent readability with text resizing and high contrast. Quick installation and full customization.',
+                ctaPrimary: 'See how to install it',
+                ctaSecondary: 'Download .ZIP from GitHub',
+                toolbarTitle: 'Accessibility',
+                toolbarContrast: '⚡ Contrast',
+                toolbarFontUp: '+A Larger',
+                toolbarFontDown: '-A Smaller',
+                toolbarReset: 'A Default',
+                featuresTitle: 'Why this plugin?',
+                featuresSubtitle: 'The key benefits of a minimalist solution.',
+                feature1Title: 'Compact Size',
+                feature1Text: 'The streamlined toolbar design integrates smoothly into your site without covering important content.',
+                feature2Title: 'Text Customization',
+                feature2Text: 'You can easily change the header and button labels from the WordPress admin panel.',
+                feature3Title: 'Fully Translated',
+                feature3Text: 'The admin dashboard and all options are fully translated into English.',
+                installationTitle: 'Quick Installation',
+                installationSubtitle: 'Three simple steps to launch the accessibility toolbar on your website.',
+                step1Title: 'Download the plugin code',
+                step1Text: 'Copy the plugin PHP code or download the full repository as a .ZIP package.',
+                step2Title: 'Upload to WordPress',
+                step2Text: 'Upload the plugin folder to',
+                step2TextSuffix: 'or upload the .ZIP file in the WordPress admin under Plugins → Add New.',
+                step3Title: 'Enable and customize',
+                step3Text: 'Activate the plugin in the admin panel and go to',
+                step3Highlight: 'Settings → Accessibility (Contrast)',
+                step3TextSuffix: 'to customize the labels and colors.',
+                footerText: 'Simple High Contrast & Font Size Control • Released under GPL v2 or later.'
+            },
+            de: {
+                pageTitle: 'Einfacher Kontrast und Schriftgrößensteuerung — WordPress-Plugin',
+                logoText: 'Barrierefreiheit',
+                githubButton: 'GitHub',
+                badge: 'Version 1.3.1 — Zurücksetzen-Schaltfläche',
+                heroTitle: 'Eine leichte Barrierefreiheitsleiste für deine WordPress-Seite',
+                heroTagline: 'Sorge für optimale Lesbarkeit mit Schriftgrößenanpassung und hohem Kontrast. Einfache Installation und volle Individualisierung.',
+                ctaPrimary: 'So wird es installiert',
+                ctaSecondary: '.ZIP von GitHub herunterladen',
+                toolbarTitle: 'Barrierefreiheit',
+                toolbarContrast: '⚡ Kontrast',
+                toolbarFontUp: '+A Größer',
+                toolbarFontDown: '-A Kleiner',
+                toolbarReset: 'A Standard',
+                featuresTitle: 'Warum dieses Plugin?',
+                featuresSubtitle: 'Die wichtigsten Vorteile einer minimalistischen Lösung.',
+                feature1Title: 'Kompakte Größe',
+                feature1Text: 'Das reduzierte Toolbar-Design lässt sich nahtlos in die Seite integrieren, ohne wichtige Inhalte zu verdecken.',
+                feature2Title: 'Textanpassung',
+                feature2Text: 'Du kannst Überschrift und Schaltflächentexte bequem im WordPress-Adminbereich ändern.',
+                feature3Title: 'Vollständig übersetzt',
+                feature3Text: 'Das Admin-Dashboard und alle Optionen sind vollständig ins Deutsche übersetzt.',
+                installationTitle: 'Schnelle Installation',
+                installationSubtitle: 'Drei einfache Schritte, um die Barrierefreiheitsleiste auf deiner Website zu aktivieren.',
+                step1Title: 'Plugin-Code herunterladen',
+                step1Text: 'Kopiere den PHP-Code des Plugins oder lade das gesamte Repository als .ZIP-Paket herunter.',
+                step2Title: 'In WordPress hochladen',
+                step2Text: 'Lade den Plugin-Ordner nach',
+                step2TextSuffix: 'oder lade die .ZIP-Datei im WordPress-Admin unter Plugins → Neu hinzufügen hoch.',
+                step3Title: 'Aktivieren und anpassen',
+                step3Text: 'Aktiviere das Plugin im Admin-Panel und gehe zu',
+                step3Highlight: 'Einstellungen → Barrierefreiheit (Kontrast)',
+                step3TextSuffix: 'um Texte und Farben anzupassen.',
+                footerText: 'Einfacher Kontrast und Schriftgrößensteuerung • Veröffentlicht unter GPL v2 oder neuer.'
+            },
+            ru: {
+                pageTitle: 'Простой контраст и изменение размера шрифта — плагин WordPress',
+                logoText: 'Доступность',
+                githubButton: 'GitHub',
+                badge: 'Версия 1.3.1 — Кнопка сброса',
+                heroTitle: 'Лёгкая панель доступности для вашего WordPress',
+                heroTagline: 'Обеспечьте отличную читаемость с помощью изменения размера текста и высокого контраста. Простая установка и полная настройка.',
+                ctaPrimary: 'Посмотреть установку',
+                ctaSecondary: 'Скачать .ZIP с GitHub',
+                toolbarTitle: 'Доступность',
+                toolbarContrast: '⚡ Контраст',
+                toolbarFontUp: '+A Больше',
+                toolbarFontDown: '-A Меньше',
+                toolbarReset: 'A По умолчанию',
+                featuresTitle: 'Почему этот плагин?',
+                featuresSubtitle: 'Ключевые преимущества минималистичного решения.',
+                feature1Title: 'Компактный размер',
+                feature1Text: 'Упрощённый дизайн панели легко интегрируется на сайт и не перекрывает важный контент.',
+                feature2Title: 'Настройка текста',
+                feature2Text: 'Вы легко можете изменить заголовок и подписи кнопок через панель администратора WordPress.',
+                feature3Title: 'Полный перевод',
+                feature3Text: 'Панель администратора и все параметры полностью переведены на русский язык.',
+                installationTitle: 'Быстрая установка',
+                installationSubtitle: 'Три простых шага, чтобы запустить панель доступности на вашем сайте.',
+                step1Title: 'Скачать код плагина',
+                step1Text: 'Скопируйте PHP-код плагина или загрузите весь репозиторий как архив .ZIP.',
+                step2Title: 'Загрузить в WordPress',
+                step2Text: 'Загрузите папку плагина в',
+                step2TextSuffix: 'или загрузите файл .ZIP в административной панели WordPress в разделе Плагины → Добавить новый.',
+                step3Title: 'Включить и настроить',
+                step3Text: 'Активируйте плагин в панели администратора и откройте',
+                step3Highlight: 'Настройки → Доступность (Контраст)',
+                step3TextSuffix: 'чтобы настроить тексты и цвета.',
+                footerText: 'Простой контраст и изменение размера шрифта • Выпуск под лицензией GPL v2 и новее.'
+            },
+            zh: {
+                pageTitle: '简单对比度与字体大小控制 — WordPress 插件',
+                logoText: '无障碍',
+                githubButton: 'GitHub',
+                badge: '版本 1.3.1 — 重置按钮',
+                heroTitle: '适用于您的 WordPress 站点的轻量无障碍工具栏',
+                heroTagline: '通过调整文字大小和高对比度，确保出色的可读性。安装简单，支持全面自定义。',
+                ctaPrimary: '查看安装方法',
+                ctaSecondary: '从 GitHub 下载 .ZIP',
+                toolbarTitle: '无障碍',
+                toolbarContrast: '⚡ 对比度',
+                toolbarFontUp: '+A 放大',
+                toolbarFontDown: '-A 缩小',
+                toolbarReset: 'A 默认',
+                featuresTitle: '为什么选择这个插件？',
+                featuresSubtitle: '极简方案的核心优势。',
+                feature1Title: '紧凑体积',
+                feature1Text: '精简的工具栏设计可以自然地集成到网站中，不会遮挡重要内容。',
+                feature2Title: '文本自定义',
+                feature2Text: '您可以在 WordPress 管理面板中轻松修改标题和按钮标签。',
+                feature3Title: '完整翻译',
+                feature3Text: '管理后台和所有选项都已完整翻译为中文。',
+                installationTitle: '快速安装',
+                installationSubtitle: '只需三个简单步骤，即可在您的网站上启用无障碍工具栏。',
+                step1Title: '下载插件代码',
+                step1Text: '复制插件 PHP 代码，或将整个仓库下载为 .ZIP 压缩包。',
+                step2Title: '上传到 WordPress',
+                step2Text: '将插件文件夹上传到',
+                step2TextSuffix: '，或在 WordPress 管理后台的“插件 → 添加新插件”中上传 .ZIP 文件。',
+                step3Title: '启用并自定义',
+                step3Text: '在管理面板中激活插件，并进入',
+                step3Highlight: '设置 → 无障碍（对比度）',
+                step3TextSuffix: '来调整文本和颜色。',
+                footerText: '简单对比度与字体大小控制 • 采用 GPL v2 或更高版本授权。'
+            }
+        };
+
+        function setLanguage(lang) {
+            const translation = translations[lang] || translations.pl;
+            document.documentElement.lang = lang;
+            document.title = translation.pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.getAttribute('data-i18n');
+                if (translation[key]) {
+                    element.innerHTML = translation[key];
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach((button) => {
+                const isActive = button.getAttribute('data-lang') === lang;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+
+            localStorage.setItem('siteLanguage', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach((button) => {
+            button.addEventListener('click', () => setLanguage(button.getAttribute('data-lang')));
+        });
 
         function toggleHighContrast() {
             document.documentElement.classList.toggle('simple-high-contrast-active');
@@ -456,6 +366,9 @@
         }
 
         window.addEventListener('load', () => {
+            const savedLang = localStorage.getItem('siteLanguage') || 'pl';
+            setLanguage(savedLang);
+
             if (localStorage.getItem('highContrastMode') === 'true') {
                 document.documentElement.classList.add('simple-high-contrast-active');
             }
@@ -467,4 +380,5 @@
         });
     </script>
 </body>
+
 </html>
